@@ -1,4 +1,4 @@
-# PROYECTO-IA-Algorimo cascad
+# PROYECTO-R_N
 
 Este algoritmo esta escrito en Python
 El objetivo es seleccionar potenciales clietes para determinado proceso de marketing que son proporcionados por un archivo People_In.txt
