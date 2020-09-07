@@ -1,4 +1,4 @@
-# PROYECTO-IA-pasantia-Wisy
+# PROYECTO-IA-Algorimo cascad
 
 Este algoritmo esta escrito en Python
 El objetivo es seleccionar potenciales clietes para determinado proceso de marketing que son proporcionados por un archivo People_In.txt
