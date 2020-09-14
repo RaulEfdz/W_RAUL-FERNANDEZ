@@ -1,27 +1,26 @@
-# PROYECTO-R_N
+PROYECTO  Alg_IA_W.py
 
-Este algoritmo esta escrito en Python
-El objetivo es seleccionar potenciales clietes para determinado proceso de marketing que son proporcionados por un archivo People_In.txt
-Los resultados son mostrados el en archivo People_Out.txt, en el cual solo se muestra el ID de los clientes con mas patencial de la lista anteri.
+Este proyecto tiene el objetivo de identificar de una lista de mas de 2000 usuarios los cuales tienen un formato de datos separados por "|" ,los usuarios que tienen mas posivilidades de ser clientes para determinada empresa, para cumplir con este objetivo el algoritmo trabaja en 3 fases secuenciales las cuales dependen una de la otra:
 
-El algoritmo utiliza una especie de reaccion  en cascada o domino, lo que hace es tomar un minimo de palabras claves de un tema por ejemplo tecnologia 
-y luego  recorre todos los elementos buscando coinsidencia  una vez encontrada una concidencia el algoritmo adquiere nuevas palabras relacionas al tema las cuales
-estas dentro del elemento encontrado, esto provoca que entre mas coinsidencia encuetre el algoritmo mas preciso sera en las siguiete busqueda la cual la hace automaticamente
-esto lo hace posible que el algoritmo  pueda iniciar con un minimo de 5 palabras claves al recorrer x cantidad de elementos guarde  un valor exponencial del iniciado, 
-toda estas nuevas palabras que por decirlo de alguna manera "aprende" el algoritmo, se guadan en  Memory.txt, que funciona como almacenamiento para el algoritmo.
-Tambien el algoritmo al final pide un valor de cantidad  numerica para establecer la cantidad de ID que el usuario desee veer, estos puedes ser desde 1>
-Tambien se debe tomar encuenta que la cantidad de ID en la salida debe ser relacinada a los elementos de entrada.
-el algoritmo tambien lo diseñe para que  si se desea aregen palabras claves de forma manual.
+Fase 1:
+-----ENTRENAMIENTO DEL ALGORITMO---------
+En esta Fase se divide en 2 partes:
+   1- En la primera parte el algoritmo requiere la introduccion de almenos una palabra clave relaciona al area profecional de los usuarios requeridos: 
+       Ejemplo: engineering  developers sistems ..
+   2- En la segunda parte el algoritmo escoge 2 usuarios aletoriamente de la lista de entrada en este caso people.in, a continuacion los presenta en la terminal estos requieren una confirmacion la cual sera "S" para afirmar que el usuario coincide con el resultado final esperado y "N" para negar , esto se repite con 2 usuarios diferentes. Todas la palabras aprenddas por el algoritmo en esta fase se guardan en el archivo Memory.txt para su posterior uso.
+  La Fase 1 le brinda al algoritmo una ruta por la cual debe moverse y buscar usuarios en la Fase 2. Antes de terminar la fase 1 el algoritmo elimina todas las palabras irelevantes como "de, el, ., ..." palabras que no aportan mucho al sistema de busqueda.  
+  
+ Fase 2:
+ ------FILTRO Y CLASIFICACION DE USUARIOS---- 
+ Esta fase se divide en 2 partes:
+ 
+1- Esta parte se encarga de filtrar por medio de comparacion las palabras aprendidas y guardadas en Memory.txt:
 
+ En esta  fase  se empieza por leer  Memory.txt y crear una lista con las palabras aprendidas, luego se hace un recorrido por cada uo de los usuarios en el archivo people.in y se separan por "|"  luego se comparan las palabras claves en la Memory.txt con las correspondientes entre profesion y industria de los usuarios en busca de coincidencias. Ejemplo de coincidencia ==> Engineering [ingeniero, ingineer] estas coincidecias se pueden clasificar en tres tipos correspondiete al valor de coincidecia que puede ser  >0.7  >0.8 >0.9 con maximo de 1.0, esto valores de coincidencia los utiliza el algorimo en la segsion de clasificacion. 
 
-Para mejorar:
-El algoritmo analiza las palabras claves y crea una reaccion en cascada, esto implica que luego de analizar miles de elementos se necesitaran mas recursos computacionales
-para que este llevo su trabajo, pero es posible modificarlo y hacerlo mas eficiente.
-Un ejemplo de esto seria  programarlo para  reducir palabras usando antonimos y sinonimos.
-
-Datos para Mejorar el Algoritmo: 
-Es necesario agregar datos como las edades de los clientes ya que el mercado de la tecnologia tiene diferentes segmentacios las cuales nos pueden brindar datos 
-mas detallados de los clientes, y hacerles llegar una  publisidad precisa. Datos como  gustos o pasatiempos ejemplo: Vieojuegos, Vieobloger, diseador ...
-
-Considero ue este algoritmo sera muy util en el campo del mrketin perzonalisado agregando mas datos y entrenado mas la memoria con palabras claves.
-
+2- Esta segunda parte de la fase 2, se enacarga de  clasificar los uasuarios agregando los ID a people.out por medio del valor de coincidencia, tomando en cuenta que se requieren 100 usuarios procesasdos en el resultado final, esta fase toma todos los usarios procesados con una valor de concidecia > 0.9. Sí estos no son sufientes procede agregar los ID de los usuarios con valor de coincidencia > 0.8  <0.9 a la lista de los ID que ya estaban agregados en people.out que es el resultado final, la condicion se repite si aun el resulatdo no cumple con la demanda de 100 ID , repiteindo en proceso anterios con los usarios con  valor de concidencia >0.7 <0.8...
+ Si despues de esta clasificacion el resultado final cumple con la demanda de los 100 ID´s se procede a la entrega del resultado final el cual hace la Fase 3.. se resalta que si la demanda de ID´s es completada en la clasificacion >0.9 el algorito pasa a la Fase 3, lo mismo paara las otras dos clasificaciones.
+ 
+ Fase 3:
+ -------PRESENTACION DE USUARIOS POTENCIALES----------
+ Esta fase se encarga de  escribir y guardar el resultado final en  people.out....  Y listo los 100 ID´s estan completados.
